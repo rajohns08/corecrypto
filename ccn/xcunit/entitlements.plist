@@ -1,0 +1,35 @@
+<!-- Copyright (c) (2010,2014,2019) Apple Inc. All rights reserved.
+
+ corecrypto is licensed under Apple Inc.’s Internal Use License Agreement (which
+ is contained in the License.txt file distributed with corecrypto) and only to 
+ people who accept that license. IMPORTANT:  Any license rights granted to you by 
+ Apple Inc. (if any) are limited to internal use within your organization only on 
+ devices and computers you own or control, for the sole purpose of verifying the 
+ security characteristics and correct functioning of the Apple Software.  You may 
+ not, directly or indirectly, redistribute the Apple Software or any portions thereof.
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.keystore.access-keychain-keys</key>
+	<true/>
+	<key>restore-keychain</key>
+	<true/>
+	<key>migrate-keychain</key>
+	<true/>
+	<key>modify-anchor-certificates</key>
+	<true/>
+	<key>com.apple.springboard.wipedevice</key>
+	<true/>
+	<key>application-identifier</key>
+	<string>com.apple.security.regressions</string>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>com.apple.security.regressions</string>
+		<string>lockdown-identities</string>
+		<string>apple</string>
+	</array>
+</dict>
+</plist>

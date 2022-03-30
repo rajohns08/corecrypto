@@ -1,0 +1,64 @@
+// Copyright (c) (2014-2020) Apple Inc. All rights reserved.
+//
+// corecrypto is licensed under Apple Inc.’s Internal Use License Agreement (which
+// is contained in the License.txt file distributed with corecrypto) and only to
+// people who accept that license. IMPORTANT:  Any license rights granted to you by
+// Apple Inc. (if any) are limited to internal use within your organization only on
+// devices and computers you own or control, for the sole purpose of verifying the
+// security characteristics and correct functioning of the Apple Software.  You may
+// not, directly or indirectly, redistribute the Apple Software or any portions thereof.
+
+CORECRYPTO_HOST_TOOLCHAIN = $(DT_TOOLCHAIN_DIR)/usr/local/bin
+
+SDK_INSTALL_VARIANT = $(SDK_INSTALL_VARIANT_$(DRIVERKIT))
+SDK_INSTALL_VARIANT_1 = driverkit
+SDK_INSTALL_VARIANT_ = default
+SDK_INSTALL_ROOT = $(SDK_INSTALL_ROOT_$(SDK_INSTALL_VARIANT))
+SDK_INSTALL_ROOT_driverkit = $(DRIVERKITROOT)
+SDK_INSTALL_HEADERS_ROOT = $(SDK_INSTALL_HEADERS_ROOT_$(SDK_INSTALL_VARIANT))
+SDK_INSTALL_HEADERS_ROOT_driverkit = $(SDK_INSTALL_ROOT)/$(SDK_RUNTIME_HEADERS_PREFIX)
+SDK_RUNTIME_HEADERS_PREFIX = Runtime
+
+SYSTEM_HEADER_SEARCH_PATHS = $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/local/include $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/include
+SYSTEM_FRAMEWORK_SEARCH_PATHS = $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/System/Library/PrivateFrameworks $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/System/Library/Frameworks
+
+// ftrivial-auto-var-init=pattern requires specifying an SDK at this time. Instead of picking a
+// specific sdk for CORECRYPTO_HEADERS, let's opt to not compile with this flag. This is fine as
+// we should have no need for stack variables in this target.
+_AUTO_INIT_FLAG_ =
+_AUTO_INIT_FLAG_1 = -ftrivial-auto-var-init=pattern
+AUTO_INIT_FLAG = $(_AUTO_INIT_FLAG_$(BUILDING_HEADERS))
+
+WARNINGS_AS_ERRORS = -Werror=conversion -Werror=conditional-uninitialized
+
+_UBSAN_OTHER_CFLAGS_YES = -fno-sanitize=alignment,shift,nonnull-attribute -fsanitize=implicit-conversion
+UBSAN_OTHER_CFLAGS = $(_UBSAN_OTHER_CFLAGS_$(ENABLE_UNDEFINED_BEHAVIOR_SANITIZER))
+
+OTHER_CFLAGS = $(inherited) -Wcast-qual -Wno-error=#warnings -Wno-error=deprecated-declarations -isystem "$(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/include/" -idirafter "$(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/System/Library/Frameworks/System.framework/PrivateHeaders" $(AUTO_INIT_FLAG) $(WARNINGS_AS_ERRORS) $(UBSAN_OTHER_CFLAGS)
+
+TRUSTED_EXEC_CFLAGS = -fstack-protector-strong -fsanitize=bounds,object-size,implicit-conversion -fsanitize-trap=all -ftrap-function=__sanitize_trap
+
+SAN_PLATFORM_NAME = ${PLATFORM_NAME}
+SAN_PLATFORM_NAME[sdk=embedded*] = ios
+SAN_PLATFORM_NAME[sdk=watchos*] = ${PLATFORM_NAME}
+
+ASAN_LIB_NAME = libclang_rt.asan_${SAN_PLATFORM_NAME}_dynamic.dylib
+UBSAN_LIB_NAME = libclang_rt.ubsan_${SAN_PLATFORM_NAME}_dynamic.dylib
+
+DEVICE_BUILT_PRODUCTS_DIR = /private/var/mobile/XcodeBuiltProducts/${PRODUCT_NAME}/${CONFIGURATION}-${PLATFORM_NAME}
+
+// Xcode currently does not have a macro for this (per 31183385)
+// Macos is special, it just works and there is not need for inserted dylib
+INSERT_ASAN_LIB[sdk=embedded*] = $(DEVICE_BUILT_PRODUCTS_DIR)/$(ASAN_LIB_NAME)
+INSERT_UBSAN_LIB[sdk=embedded*] = $(DEVICE_BUILT_PRODUCTS_DIR)/$(UBSAN_LIB_NAME)
+
+INSERT_LIBRARIES[sdk=embedded*] = $(INSERT_ASAN_LIB):$(INSERT_UBSAN_LIB)
+
+RTKIT_ROOT = /usr/local/standalone/RTKit
+RTKIT_ROOT[sdk=rtkit*] =
+
+RTKITWIFI_CPU_FLAG[arch=armv7] = -mcpu=cortex-r5
+RTKITWIFI_CPU_FLAG[arch=armv7em] = -mcpu=cortex-m7
+RTKITWIFI_CPU_FLAG[arch=arm64] = -mcpu=chinook
+
+RTKIT_CPU_FLAG[arch=armv7k] = -mcpu=cortex-a7
