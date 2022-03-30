@@ -17,7 +17,8 @@
 #
 
 cmake_minimum_required(VERSION 3.4.3)
-set(CMAKE_OSX_SYSROOT "macosx.internal") # NOTE: This must be set before the call to project
+execute_process(COMMAND "xcrun --sdk macosx --show-sdk-path" OUTPUT_VARIABLE SDK_DIR)
+set(CMAKE_OSX_SYSROOT ${SDK_DIR}) # NOTE: This must be set before the call to project
 project (corecrypto C)
 
 option(CC_LINUX_ASM "Enable assembler support on Linux platform" OFF)
