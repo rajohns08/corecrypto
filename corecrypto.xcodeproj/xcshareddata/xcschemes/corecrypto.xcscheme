@@ -20,6 +20,20 @@
                ReferencedContainer = "container:corecrypto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0C75E6CD12E15717009E8E65"
+               BuildableName = "corecrypto_perf"
+               BlueprintName = "corecrypto_perf"
+               ReferencedContainer = "container:corecrypto.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -39,17 +53,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C75E6CD12E15717009E8E65"
-            BuildableName = "corecrypto_perf"
-            BlueprintName = "corecrypto_perf"
-            ReferencedContainer = "container:corecrypto.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -63,18 +66,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C75E6CD12E15717009E8E65"
-            BuildableName = "corecrypto_perf"
-            BlueprintName = "corecrypto_perf"
-            ReferencedContainer = "container:corecrypto.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       displayScaleIsEnabled = "NO"
@@ -84,16 +75,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C75E6CD12E15717009E8E65"
-            BuildableName = "corecrypto_perf"
-            BlueprintName = "corecrypto_perf"
+            BlueprintIdentifier = "D2AAC07D0554694100DB518D"
+            BuildableName = "libcorecrypto_static.a"
+            BlueprintName = "corecrypto_static"
             ReferencedContainer = "container:corecrypto.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
