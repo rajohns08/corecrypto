@@ -23834,6 +23834,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos macosx";
 			};
 			name = Debug;
@@ -23843,6 +23844,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos macosx";
 			};
 			name = Release;
@@ -24198,7 +24200,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx watchos watchsimulator appletvos appletvsimulator";
 			};
@@ -24283,7 +24285,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SDK_INSTALL_ROOT)/usr/lib/system";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx watchos watchsimulator appletvos appletvsimulator";
 			};
