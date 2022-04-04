@@ -24203,6 +24203,7 @@
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx watchos watchsimulator appletvos appletvsimulator";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/local/include $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/include $(SRCROOT)/xnu-7195.81.3/bsd";
 			};
 			name = Debug;
 		};
@@ -24288,6 +24289,7 @@
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx watchos watchsimulator appletvos appletvsimulator";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/local/include $(SDKROOT)/$(SDK_INSTALL_HEADERS_ROOT)/usr/include $(SRCROOT)/xnu-7195.81.3/bsd";
 			};
 			name = Release;
 		};
