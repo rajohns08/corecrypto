@@ -22,6 +22,8 @@ Corecrypto compiles under all Apple OSs, Windows, Android and Linux.
 
 Building for iOS (arm64)
 ------
+This repo is a fork of the `corecrypto` source code provided at https://developer.apple.com/security. No modifications to the `corecrypto` source code have been made - only build/project files.
+
 Open `corecrypto.xcodeproj` in Xcode (tested on Xcode 13.2.1, macOS 11.6.4). Then make sure `corecrypto` is set as the build target and `Any iOS Device (arm64)` is set as the architecture and do a `Product > Archive`:
 
 ![Alt text](img/build.png?raw=true "Title")
