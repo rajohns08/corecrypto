@@ -20,6 +20,20 @@ nothing more.
 
 Corecrypto compiles under all Apple OSs, Windows, Android and Linux.
 
+Building for iOS (arm64)
+------
+Open `corecrypto.xcodeproj` in Xcode (tested on Xcode 13.2.1, macOS 11.6.4). Then make sure `corecrypto` is set as the build target and `Any iOS Device (arm64)` is set as the architecture and do a `Product > Archive`:
+
+![Alt text](img/build.png?raw=true "Title")
+
+When the Archive window pops up, click Distribute Content:
+![Alt text](img/distribute.png?raw=true "Title")
+Then select Built Products and click Next:
+![Alt text](img/products.png?raw=true "Title")
+The directory created should contain `/Products/usr/local/lib/libcorecrypto_static.a` which is the static corecrpyto library.
+
+
+
 Corecrypto Modules
 ------------------
 
@@ -75,53 +89,3 @@ The following subdirections don't follow the module layout yet:
 
 * `corecrypto_kext`:   Supporting files for kernel extension build and fips support.
 * `corecrypto_dylib`:  Supporting files for userspace shared lib build and fips support.
-
-ARMV6m
-------
-The ARMV6m is not on corecrypto project target list. To compile corecrypto under ARMV6m use the following command:
-`$xcodebuild -target "corecrypto_static" OTHER_CFLAGS="-Qunused-arguments" -sdk iphoneos.internal -arch armv6m`
-
-
-Windows
--------
-corecrypto compiles under Windows using Visual Studio 2015 and Clang with Microsoft CodeGen. The corecrypto Solution contains three projects:
-
-1. `corecrypto`: This projects compiles corecrypto, and produces a static library in 32 and 64 bit modes.
-2. `corecrypto_test`: This project compiles corecrypto test files and links statically with the corecrypto debug library.
-3. `corecrypto_perf`: This project compiles corecrypto performance measurement files and links statically with the corecrypto release library.
-4. `corecrypto_wintest`: This project contains a simple code that links to the corecrypto.lib and complies in c++ using the Visul C++ compiler. This project created to
-   make sure corecrypto library can linked to c++ software that are compiled with the Microsoft Compiler.
-
-Android
-------
-corecrypto library, `corecrypto_test` and  `corecrypto_perf` complie under Android. The Android project file is in the android subdirectory. 
-
-Linux
------
-The corecrypto library, `corecrypto_test` and `corecrypto_perf` compile under Linux and are built using cmake. See Cmake section for more details.
-The Linux implementation does not use ASM implementations due to differences between assemblers on Darwin and Linux.
-
-CMake
------
-The corecrypto library, 'corecrypto_test' and 'corecrypto_perf' can also be built using cmake in macOS and Linux.
-
-To compile using cmake, run the usual cmake commands:
-```
-  $ cd <srcdir>
-  $ mkdir build && cd build
-  $ CC=clang CXX=clang++ cmake ..
-  $ make
-```
-where `<srcdir>` is the path to the directory containing the sources.
-
-To install, type `make install` from the build directory (will require root privileges).
-
-Prototypes changes:
--------------------
-From time to time, corecrypto needs to change the prototypes of functions.
-In this case, we use a macro defined as:
-CC_CHANGEFUNCTION_<radar>_<function name>
-and the header will document instructions to migrate from the old to new function prototype.
-
-
-
