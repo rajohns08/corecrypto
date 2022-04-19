@@ -20,19 +20,19 @@ nothing more.
 
 Corecrypto compiles under all Apple OSs, Windows, Android and Linux.
 
-Building for iOS (arm64)
+**NOTE:** This repo is a fork of the `corecrypto` source code provided at https://developer.apple.com/security. No modifications to the `corecrypto` source code have been made - only build/project files.
+
+Building a universal (fat) binary iOS devices + simulators
 ------
-This repo is a fork of the `corecrypto` source code provided at https://developer.apple.com/security. No modifications to the `corecrypto` source code have been made - only build/project files.
+1. cd into root repo directory
 
-Open `corecrypto.xcodeproj` in Xcode (tested on Xcode 13.2.1, macOS 11.6.4). Then make sure `corecrypto` is set as the build target and `Any iOS Device (arm64)` is set as the architecture and do a `Product > Archive`:
+1. `xcodebuild -target corecrypto -configuration Debug -arch x86_64 -sdk iphonesimulator SYMROOT="/Users/rajohns/Downloads/corecrypto_build"`
 
-![Alt text](img/build.png?raw=true "Title")
+1. `xcodebuild -target corecrypto -configuration Release -arch arm64 -sdk iphoneos SYMROOT="/Users/rajohns/Downloads/corecrypto_build"`
 
-When the Archive window pops up, click Distribute Content:
-![Alt text](img/distribute.png?raw=true "Title")
-Then select Built Products and click Next:
-![Alt text](img/products.png?raw=true "Title")
-The directory created should contain `/Products/usr/local/lib/libcorecrypto_static.a` which is the static corecrpyto library.
+1. cd into `/Users/rajohns/Downloads/corecrypto_build`
+
+1. `lipo -create Debug-iphonesimulator/libcorecrypto_static.a Release-iphoneos/libcorecrypto_static.a -output libcorecrypto_static.a`
 
 
 
