@@ -24,6 +24,8 @@ Corecrypto compiles under all Apple OSs, Windows, Android and Linux.
 
 Building a universal (fat) binary iOS devices + simulators
 ------
+This was tested on Xcode 13.2.1, macOS 11.6.4.
+
 1. cd into root repo directory
 
 1. `xcodebuild -target corecrypto -configuration Debug -arch x86_64 -sdk iphonesimulator SYMROOT="/Users/rajohns/Downloads/corecrypto_build"`
